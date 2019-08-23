@@ -624,5 +624,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 1686589417}
-  speed: 0.5
-  friction: 10
+  speed: 0.69
+  friction: 0.05
