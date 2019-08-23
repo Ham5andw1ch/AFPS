@@ -1,2 +1,2 @@
 # AFPS
-Cool AFPS we are making in Unity for a Computer Graphics project
+Cool Arena Shooter we are making in Unity for a Computer Graphics project
