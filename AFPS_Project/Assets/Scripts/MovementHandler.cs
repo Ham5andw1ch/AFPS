@@ -48,11 +48,15 @@ public class MovementHandler : MonoBehaviour
         {
                 float oldx = xvel;
                 float oldz = zvel;
-                if(xvel != 0)
-                xvel += -xvel/Mathf.Abs(xvel) * friction;
-                if(zvel != 0)
-                zvel += -zvel/Mathf.Abs(zvel) * friction;
-                Debug.Log("Vels: " + oldx + " " + xvel);
+                float oldspeed = Mathf.Sqrt(oldx*oldx+oldz*oldz);
+                float xf =(-xvel/Mathf.Abs(xvel) * friction * xvel)/oldspeed;
+                float zf =(-xvel/Mathf.Abs(zvel) * friction * zvel)/oldspeed;
+                Debug.Log("fs: " + xf + " " + zf + " " + oldspeed);
+                if(xvel != 0 && oldspeed != 0)
+                xvel += (-xvel * friction)/oldspeed;
+                if(zvel != 0 && oldspeed != 0)
+                zvel += (-zvel * friction) /oldspeed;
+                Debug.Log("Vels: " + oldx + " " + oldz + " " + oldspeed);
                 if (oldx/xvel <= 0)
                     xvel = 0;
                 if (oldz/zvel <= 0)
@@ -60,14 +64,14 @@ public class MovementHandler : MonoBehaviour
 
                 //            Debug.Log("Yikes");
             
-            if (Mathf.Abs(xvel) < .001)
-            {
-                xvel = 0;
-            }
-            if (Mathf.Abs(zvel) < .001)
-            {
-                zvel = 0;
-            }
+            //if (Mathf.Abs(xvel) < .001)
+            //{
+            //    xvel = 0;
+            //}
+            //if (Mathf.Abs(zvel) < .001)
+            //{
+            //    zvel = 0;
+            //}
         }
 
         else

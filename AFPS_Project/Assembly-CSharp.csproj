@@ -58,31 +58,31 @@
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\MovementHandler.cs" />
  <Reference Include="Unity.Timeline.Editor">
- <HintPath>/home/donov/Coding/AFPS/AFPS_Project/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ <HintPath>/home/donov/GitRepos/AFPS/AFPS_Project/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
- <HintPath>/home/donov/Coding/AFPS/AFPS_Project/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+ <HintPath>/home/donov/GitRepos/AFPS/AFPS_Project/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>/home/donov/Coding/AFPS/AFPS_Project/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>/home/donov/GitRepos/AFPS/AFPS_Project/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>/home/donov/Coding/AFPS/AFPS_Project/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>/home/donov/GitRepos/AFPS/AFPS_Project/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
- <HintPath>/home/donov/Coding/AFPS/AFPS_Project/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ <HintPath>/home/donov/GitRepos/AFPS/AFPS_Project/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>/home/donov/Coding/AFPS/AFPS_Project/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ <HintPath>/home/donov/GitRepos/AFPS/AFPS_Project/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Rider.Editor">
- <HintPath>/home/donov/Coding/AFPS/AFPS_Project/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ <HintPath>/home/donov/GitRepos/AFPS/AFPS_Project/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>/home/donov/Coding/AFPS/AFPS_Project/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>/home/donov/GitRepos/AFPS/AFPS_Project/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>/home/donov/Coding/AFPS/AFPS_Project/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>/home/donov/GitRepos/AFPS/AFPS_Project/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>/home/donov/Unity/2019.2.0f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
