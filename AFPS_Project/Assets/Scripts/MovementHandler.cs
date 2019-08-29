@@ -62,12 +62,12 @@ public class MovementHandler : MonoBehaviour
                 crouching = false;
             }
 
-            Debug.Log(curSpeed + " " + accSpeed + " " + speed);
+//            Debug.Log(curSpeed + " " + accSpeed + " " + speed);
             if ((angles[xin][yin] != -1))
             {
                 float newx = xvel + velSpeed * Mathf.Sin((controller.gameObject.transform.rotation.eulerAngles.y + angles[xin][yin]) * (Mathf.PI / 180));
                 float newz = zvel + velSpeed * Mathf.Cos((controller.gameObject.transform.rotation.eulerAngles.y + angles[xin][yin]) * Mathf.PI / 180);
-                if (!(Mathf.Sqrt(newx * newx + newz * newz) < speed))
+                if (!(Mathf.Sqrt(newx * newx + newz * newz) < speed) && !crouching)
                 {
                     xvel = speed * Mathf.Sin((controller.gameObject.transform.rotation.eulerAngles.y + angles[xin][yin]) * (Mathf.PI / 180));
                     zvel = speed * Mathf.Cos((controller.gameObject.transform.rotation.eulerAngles.y + angles[xin][yin]) * Mathf.PI / 180);
@@ -79,7 +79,7 @@ public class MovementHandler : MonoBehaviour
                 }
 
 
-                Debug.Log("Vels: " + xvel + " " + zvel);
+//                Debug.Log("Vels: " + xvel + " " + zvel);
 
             }
             if (Input.GetKey(KeyCode.Space))
@@ -87,7 +87,7 @@ public class MovementHandler : MonoBehaviour
                 if(!jumped && jumpQueue){
                 jumpQueue = false;
                 jumped = true;
-                Debug.Log("Adding lul");
+                //Debug.Log("Adding lul");
                 yvel += jvel;
                 }
             } else{
@@ -95,11 +95,11 @@ public class MovementHandler : MonoBehaviour
             }
             oldx = xvel;
             oldz = zvel;
-            Debug.Log("speed Before Friction:" + curSpeed + "\toldspeed After Friction:" + Mathf.Sqrt(xvel * xvel + zvel * zvel));
+            //Debug.Log("speed Before Friction:" + curSpeed + "\toldspeed After Friction:" + Mathf.Sqrt(xvel * xvel + zvel * zvel));
             float oldspeed = Mathf.Sqrt(xvel * xvel + zvel * zvel);
             float xf = (-xvel / Mathf.Abs(xvel) * friction * Time.deltaTime * xvel) / oldspeed;
             float zf = (-zvel / Mathf.Abs(zvel) * friction * Time.deltaTime * zvel) / oldspeed;
-            Debug.Log("fs: " + xf + " " + zf + " " + oldspeed);
+            //Debug.Log("fs: " + xf + " " + zf + " " + oldspeed);
             if (xvel != 0 && oldspeed != 0)
                 xvel += (-xvel * friction * Time.deltaTime) / oldspeed;
             if (zvel != 0 && oldspeed != 0)
@@ -109,7 +109,7 @@ public class MovementHandler : MonoBehaviour
                 xvel = 0;
             if (oldz / zvel <= 0)
                 zvel = 0;
-            Debug.Log("Speed Before Friction:" + oldspeed + "\tSpeed After Friction:" + Mathf.Sqrt(xvel * xvel + zvel * zvel));
+            //Debug.Log("Speed Before Friction:" + oldspeed + "\tSpeed After Friction:" + Mathf.Sqrt(xvel * xvel + zvel * zvel));
 
             //            Debug.Log("Yikes");
 
@@ -130,10 +130,10 @@ public class MovementHandler : MonoBehaviour
                 jumpQueue = true;
             }   
             yvel = yvel - gravity * Time.deltaTime;
-            Debug.Log("yvel " + yvel);
+//            Debug.Log("yvel " + yvel);
         }
         controller.Move(new Vector3(xvel * Time.deltaTime, yvel * Time.deltaTime, zvel * Time.deltaTime));
         //Debug.Log(controller.gameObject.transform.position);
-        Debug.Log(xvel + " " + yvel + " " + zvel);
+//        Debug.Log(xvel + " " + yvel + " " + zvel);
     }
 }

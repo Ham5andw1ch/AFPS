@@ -624,5 +624,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 1686589417}
-  speed: 0.69
-  friction: 0.05
+  speed: 70
+  accSpeed: 200
+  gravity: 300
+  jvel: 50
+  friction: 150
