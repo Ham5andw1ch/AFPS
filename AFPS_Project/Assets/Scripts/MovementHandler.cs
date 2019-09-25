@@ -88,7 +88,6 @@ public class MovementHandler : MonoBehaviour
 
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                if(gameObje
                 crouching = true;
             }
             else
@@ -176,7 +175,7 @@ public class MovementHandler : MonoBehaviour
             float oldy = controller.transform.position.y;
             yvel = yvel - gravity * Time.deltaTime;
             controller.Move(new Vector3(0, yvel * Time.deltaTime, 0));
-            if(controller.transform.position.y == oldy && yvel < 0){
+            if(controller.transform.position.y == oldy && yvel <= -gravity * Time.deltaTime){
                 grounded = true;
             }else{
                 grounded = false;

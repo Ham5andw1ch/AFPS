@@ -4,12 +4,14 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public Camera test;
-    public float sensitivity;
+    public float sensitivity,crouchSpeed,crouchHeight;
+    private float standHeight = 0;
     public GameObject boi;
     public bool invert;
     private int invertint;
     void Start()
     {
+        standHeight = test.transform.localPosition.y;
         if (invert)
         {
             invertint = 1;
@@ -23,7 +25,6 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         if(Input.GetKey("p")){
-            Debug.Log("Epic");
         Cursor.lockState = CursorLockMode.Locked;
         }
         if(Input.GetKey("o")){
@@ -32,7 +33,6 @@ public class CameraController : MonoBehaviour
         float xrot = Input.GetAxis("Mouse Y") * sensitivity;
         float yrot = Input.GetAxis("Mouse X") * sensitivity;
         boi.transform.Rotate(new Vector3(0,yrot, 0), Space.World);
-        Debug.Log(invertint*xrot+test.transform.rotation.eulerAngles.x + " " + yrot);
         float finalNum = invertint*xrot+test.transform.rotation.eulerAngles.x;
         if(finalNum > 180 )
         finalNum-=360;
@@ -43,7 +43,15 @@ public class CameraController : MonoBehaviour
             test.transform.rotation=Quaternion.Euler(-30,test.transform.rotation.eulerAngles.y,test.transform.rotation.eulerAngles.z);
         }else
         test.transform.Rotate(new Vector3(invertint*xrot,0, 0), Space.Self);
-    
+        Debug.Log(standHeight);
+        if(Input.GetKey(KeyCode.LeftShift)){
+            if(test.transform.localPosition.y >= crouchHeight)
+            test.transform.Translate(new Vector3(0,-crouchSpeed * Time.deltaTime,0));
+        }else{
+            if(test.transform.localPosition.y <= standHeight)
+                test.transform.Translate(new Vector3(0,crouchSpeed * Time.deltaTime,0));
+
+        }
 
         //Debug.Log("Hello");
     }
