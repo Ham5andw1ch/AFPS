@@ -169,7 +169,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b0753e50008253dca990bc6704205388, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -609,6 +609,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   test: {fileID: 963194227}
   sensitivity: 5
+  crouchSpeed: 5
+  crouchHeight: -0.3
   boi: {fileID: 1686589416}
   invert: 0
 --- !u!114 &1686589423
@@ -624,11 +626,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 1686589417}
-  speed: 70
+  speed: 30
   accSpeed: 200
-  gravity: 300
-  jvel: 50
-  slidet: 0
-  crouchSpeed: 0
-  slideSpeed: 0
-  friction: 150
+  gravity: 100
+  jvel: 30
+  slidet: 0.5
+  crouchSpeed: 15
+  slideSpeed: 1.5
+  friction: 80
