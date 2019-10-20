@@ -46,10 +46,10 @@ public class CameraController : MonoBehaviour
         Debug.Log(standHeight);
         if(Input.GetKey(KeyCode.LeftShift)){
             if(test.transform.localPosition.y >= crouchHeight)
-            test.transform.Translate(new Vector3(0,-crouchSpeed * Time.deltaTime,0));
+            test.transform.Translate(new Vector3(0,-crouchSpeed * Time.deltaTime,0),Space.World);
         }else{
             if(test.transform.localPosition.y <= standHeight)
-                test.transform.Translate(new Vector3(0,crouchSpeed * Time.deltaTime,0));
+                test.transform.Translate(new Vector3(0,crouchSpeed * Time.deltaTime,0),Space.World);
 
         }
 

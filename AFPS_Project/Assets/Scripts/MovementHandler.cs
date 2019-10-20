@@ -6,7 +6,7 @@ public class MovementHandler : MonoBehaviour
     public CharacterController controller;
     private float xvel, yvel, zvel, slideTimer;
     public float speed, accSpeed, gravity, jvel, slidet, crouchSpeed, slideSpeed;
-    private bool crouching = false, walking = false, jumped = false, jumpQueue = false, sliding = false, slideQueue = false,grounded = false;
+    private bool crouching = false, walking = false, jumped = false, jumpQueue = false, sliding = false, slideQueue = false, grounded = false;
     public float friction;
     // Start is called before the first frame update
     void Start()
@@ -18,22 +18,24 @@ public class MovementHandler : MonoBehaviour
     void Update()
     {
 
-        if(Input.GetKey(KeyCode.RightShift)){
+        if (Input.GetKey(KeyCode.RightShift))
+        {
             Debug.Log("I made it");
-            controller.Move(new Vector3(-controller.transform.position.x,-controller.transform.position.y+20,-controller.transform.position.z));
-        }else
+            controller.Move(new Vector3(-controller.transform.position.x, -controller.transform.position.y + 20, -controller.transform.position.z));
+        }
+        else
 
         if (grounded)
         {
             Debug.Log(sliding);
-            
+
             jumped = false;
             yvel = 0;
             float oldx = xvel;
             float oldz = zvel;
             float curSpeed = Mathf.Sqrt(oldx * oldx + oldz * oldz);
 
-                    Debug.Log("haha1");
+            Debug.Log("haha1");
             //Yes, jumping techinically happens a cycle after space pressed, but it's worth.
             if (Input.GetKey(KeyCode.Space))
             {
@@ -43,6 +45,7 @@ public class MovementHandler : MonoBehaviour
                     jumped = true;
                     //Debug.Log("Adding lul");
                     yvel += jvel;
+                    this.gameObject.GetComponent<AudioSource>().Play();
                 }
             }
             else
@@ -52,9 +55,12 @@ public class MovementHandler : MonoBehaviour
             float oldy = controller.transform.position.y;
             yvel = yvel - gravity * Time.deltaTime;
             controller.Move(new Vector3(0, yvel * Time.deltaTime, 0));
-            if(controller.transform.position.y == oldy){
+            if (controller.transform.position.y == oldy)
+            {
                 grounded = true;
-            }else{
+            }
+            else
+            {
                 grounded = false;
             }
 
@@ -96,16 +102,16 @@ public class MovementHandler : MonoBehaviour
             }
             if (slideQueue && !sliding && crouching)
             {
-                curSpeed *= slideSpeed;
+                curSpeed += slideSpeed;
                 slideQueue = false;
-                slideTimer = slidet;
                 sliding = true;
             }
             else if (crouching && sliding)
             {
                 slideQueue = false;
                 slideTimer -= Time.deltaTime;
-                if ( curSpeed == speed){
+                if (curSpeed <= crouchSpeed)
+                {
                     curSpeed = crouchSpeed;
                     slideTimer = 0;
                     sliding = false;
@@ -120,29 +126,32 @@ public class MovementHandler : MonoBehaviour
             else if (crouching)
             {
                 slideQueue = false;
-                velSpeed = crouchSpeed;
+                curSpeed = crouchSpeed;
             }
 
             //            Debug.Log(curSpeed + " " + accSpeed + " " + speed);
-            if(!crouching){
-            if ((angles[xin][yin] != -1))
+            if (!sliding)
             {
-                float newx = xvel + velSpeed * Mathf.Sin((controller.gameObject.transform.rotation.eulerAngles.y + angles[xin][yin]) * (Mathf.PI / 180));
-                float newz = zvel + velSpeed * Mathf.Cos((controller.gameObject.transform.rotation.eulerAngles.y + angles[xin][yin]) * Mathf.PI / 180);
-                if (!(Mathf.Sqrt(newx * newx + newz * newz) < speed))
+                if ((angles[xin][yin] != -1))
                 {
-                    xvel = speed * Mathf.Sin((controller.gameObject.transform.rotation.eulerAngles.y + angles[xin][yin]) * (Mathf.PI / 180));
-                    zvel = speed * Mathf.Cos((controller.gameObject.transform.rotation.eulerAngles.y + angles[xin][yin]) * Mathf.PI / 180);
-                }
-                else
-                {
-                    xvel = newx;
-                    zvel = newz;
+                    float newx = xvel + velSpeed * Mathf.Sin((controller.gameObject.transform.rotation.eulerAngles.y + angles[xin][yin]) * (Mathf.PI / 180));
+                    float newz = zvel + velSpeed * Mathf.Cos((controller.gameObject.transform.rotation.eulerAngles.y + angles[xin][yin]) * Mathf.PI / 180);
+                    if (!(Mathf.Sqrt(newx * newx + newz * newz) < (crouching ? crouchSpeed : speed)))
+                    {
+                        xvel = curSpeed * Mathf.Sin((controller.gameObject.transform.rotation.eulerAngles.y + angles[xin][yin]) * (Mathf.PI / 180));
+                        zvel = curSpeed * Mathf.Cos((controller.gameObject.transform.rotation.eulerAngles.y + angles[xin][yin]) * Mathf.PI / 180);
+                    }
+                    else
+                    {
+                        xvel = newx;
+                        zvel = newz;
+                    }
                 }
             }
-            } else {
-                    xvel = curSpeed * Mathf.Sin((controller.gameObject.transform.rotation.eulerAngles.y + angles[xin][yin]) * (Mathf.PI / 180));
-                    zvel = curSpeed * Mathf.Cos((controller.gameObject.transform.rotation.eulerAngles.y + angles[xin][yin]) * Mathf.PI / 180);
+            else
+            {
+                xvel = curSpeed * Mathf.Sin((controller.gameObject.transform.rotation.eulerAngles.y + angles[xin][yin]) * (Mathf.PI / 180));
+                zvel = curSpeed * Mathf.Cos((controller.gameObject.transform.rotation.eulerAngles.y + angles[xin][yin]) * Mathf.PI / 180);
 
             }
             //Calculate Friction
@@ -163,7 +172,7 @@ public class MovementHandler : MonoBehaviour
 
         else
         {
-                    Debug.Log("haha2");
+            Debug.Log("haha2");
             if (!Input.GetKey(KeyCode.Space))
             {
                 jumpQueue = true;
@@ -175,9 +184,12 @@ public class MovementHandler : MonoBehaviour
             float oldy = controller.transform.position.y;
             yvel = yvel - gravity * Time.deltaTime;
             controller.Move(new Vector3(0, yvel * Time.deltaTime, 0));
-            if(controller.transform.position.y == oldy && yvel <= -gravity * Time.deltaTime){
+            if (controller.transform.position.y == oldy && yvel <= -gravity * Time.deltaTime)
+            {
                 grounded = true;
-            }else{
+            }
+            else
+            {
                 grounded = false;
             }
             //            Debug.Log("yvel " + yvel);
